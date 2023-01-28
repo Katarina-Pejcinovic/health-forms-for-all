@@ -6,6 +6,8 @@ from tkinter import *
   
 # import filedialog module
 from tkinter import filedialog
+import fitz, os
+
 
 # from tkPDFViewer import tkPDFViewer as pdf
   
@@ -23,6 +25,9 @@ def browseFiles():
     label_file_explorer.configure(text="File Opened: "+filename)
     # v1 = pdf.ShowPdf()
     # v2 = v1.pdf_view(window, pdf_location = filename)
+    if(filename != ""):
+        print("run script")
+        os.system('python3 script.py')
 
       
                                                                                                   
