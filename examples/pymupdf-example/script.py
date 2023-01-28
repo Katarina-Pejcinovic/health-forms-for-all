@@ -21,8 +21,8 @@ for page in document:
         for inst in instances:
             page.add_text_annot(inst.top_right, bad_words[key])
 
-                highlight = page.add_highlight_annot(inst)
-                highlight.set_colors({'stroke': rgb_to_stroke((255, 108, 79)), 'fill': None})
-                highlight.update()
+            highlight = page.add_highlight_annot(inst)
+            highlight.set_colors({'stroke': rgb_to_stroke((255, 108, 79)), 'fill': None})
+            highlight.update()
 
 document.save(script_path + '/output.pdf')
