@@ -27,13 +27,14 @@ def browseFiles():
     # v2 = v1.pdf_view(window, pdf_location = filename)
     if(filename != ""):
         print("run script")
-        os.system('python3 script.py')
+        # os.system('python3 script.py')
 
       
                                                                                                   
 # Create the root window
 window = Tk()
-  
+# style = Tk.Style(window)
+# style.theme_use('aqua')
 # Set window title
 window.title('File Explorer')
   
@@ -73,6 +74,7 @@ button_explore.grid(column = 1, row = 2)
 button_exit.grid(column = 1,row = 3)
   
 # Let the window wait for any events
+
 window.mainloop()
 
 # import PyPDF2
