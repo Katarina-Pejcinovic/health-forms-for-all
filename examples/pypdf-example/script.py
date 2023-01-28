@@ -1,7 +1,10 @@
 from pypdf import PdfReader, PdfWriter
 from pypdf.generic import AnnotationBuilder
+import os
 
-reader = PdfReader('intake1.pdf')
+script_path = os.path.dirname(os.path.realpath(__file__))
+
+reader = PdfReader(script_path + '/../inputs/intake1.pdf')
 n_pages = len(reader.pages)
 page = reader.pages[0]
 text = page.extract_text()
@@ -21,5 +24,5 @@ annotation2 = AnnotationBuilder.rectangle(
 writer.add_annotation(page_number=0, annotation=annotation)
 writer.add_annotation(page_number=0, annotation=annotation2)
 
-with open('output.pdf', 'wb') as outfile:
+with open(script_path + '/output.pdf', 'wb') as outfile:
     writer.write(outfile)
