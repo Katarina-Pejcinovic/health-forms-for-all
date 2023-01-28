@@ -36,5 +36,17 @@ for page in document:
             highlight = page.add_highlight_annot(inst)
             highlight.set_colors({'stroke': rgb_to_stroke((255, 108, 79)), 'fill': None})
             highlight.update()
+    for category, wordlist in missing_words.items():
+        for word in wordlist:
+            instances = page.search_for(word)
+            missing_words_count[category] += len(instances)
+
+annotation_comments = []
+for category, count in missing_words_count.items():
+    if count == 0:
+        annotation_comments.append(missing_comments[category])
+
+if len(annotation_comments) != 0:
+    document[0].add_text_annot((15, 15), '\n\n'.join(annotation_comments))
 
 document.save(script_path + '/output.pdf')
