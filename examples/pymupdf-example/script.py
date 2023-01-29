@@ -1,33 +1,34 @@
 import fitz, os, argparse
 
+bad_words = {
+    'Parent': "parent(s)/guardian",
+    'Mother/Father': "parent(s)/Guardian", 
+    ' sex ': "gender assigned at birth",
+    'spouse': 'partner(s)',
+    'son/daughter': 'child', 
+    'marital status': 'relationship status',
+    'Preferred name': 'chosen name', 
+}
+missing_words = {
+    'sexuality': ['sexuality', 'sexual orientation', 'sexual preference'],
+    'honorifics': ['Mr.', 'Mrs.', 'Title', 'Position', 'Prefix'],
+    'prefname': ['Preferred name', 'Chosen name'],
+    #'bogus': ['bogus'],
+    #'Hot chocolate': ['Hot chocolate', 'Hot cocoa'],
+}
+missing_comments = {
+    'honorifics': 'Add an honorific bruh',
+    "sexuality": "consider adding a section for patients to add their sexuality if they wish.",
+    'prefname': 'Consider adding a "chosen name" field',
+    #'bogus': 'this missing word is bogus.',
+    #'Hot chocolate': 'How dare you not have hot chocolate in your form',
+}
+
 def rgb_to_stroke(rgb):
     return tuple([x / 255 for x in rgb])
 
 def lint_pdf(infile: str, outfile: str):
     document = fitz.open(infile)
-    bad_words = {
-        'Parent': "parent(s)/guardian",
-        'Mother/Father': "parent(s)/Guardian", 
-        ' sex ': "gender assigned at birth",
-        'spouse': 'partner(s)',
-        'son/daughter': 'child', 
-        'marital status': 'relationship status',
-        'Preferred name': 'chosen name', 
-    }
-    missing_words = {
-        'sexuality': ['sexuality', 'sexual orientation', 'sexual preference'],
-        'honorifics': ['Mr.', 'Mrs.', 'Title', 'Position', 'Prefix'],
-        'prefname': ['Preferred name', 'Chosen name'],
-        #'bogus': ['bogus'],
-        #'Hot chocolate': ['Hot chocolate', 'Hot cocoa'],
-    }
-    missing_comments = {
-        'honorifics': 'Add an honorific bruh',
-        "sexuality": "consider adding a section for patients to add their sexuality if they wish.",
-        'prefname': 'Consider adding a "chosen name" field',
-        #'bogus': 'this missing word is bogus.',
-        #'Hot chocolate': 'How dare you not have hot chocolate in your form',
-    }
     missing_words_count = { k: 0 for k in missing_words.keys() }
 
     for page in document:
