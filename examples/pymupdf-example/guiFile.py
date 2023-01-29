@@ -46,7 +46,7 @@ def browseFiles():
     # Change label contents
     # fileLabel.configure(text="File successfully scanned! Please check your Downloads Folder")
     fileLabel.grid(column = 0, row = 6)
-    fileLabel["text"]="file success updated"
+    fileLabel["text"]="File successfully scanned! Please check your Downloads Folder"
     # v1 = pdf.ShowPdf()
     # v2 = v1.pdf_view(window, pdf_location = filename)
     if(filename != ""):
