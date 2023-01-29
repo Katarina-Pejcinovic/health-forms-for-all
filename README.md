@@ -2,7 +2,8 @@
 
 **Form This Way** is a PDF processor for medical intake forms to use more
 inclusive language. It was made for [QWER Hacks 2023](https://www.qwerhacks.com)
-for the following categories:
+([submission here](https://devpost.com/software/form-this-way)) for the
+following categories:
 * **Healthcare Equity track**
 * Best Technical
 * Most Innovative
