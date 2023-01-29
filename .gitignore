@@ -1,7 +1,1 @@
 examples/*-example/output.pdf
-examples/electron-app/*node_modules
-examples/electron-app/preload.js
-examples/electron-app/package.json
-examples/electron-app/package-lock.json
-examples/electron-app/main.js
-examples/electron-app/index.html
