@@ -68,7 +68,7 @@ window = Tk()
 # style = Tk.Style(window)
 # style.theme_use('aqua')
 # Set window title
-window.title('File Explorer')
+window.title('Form This Way')
   
 # Set window size
 window.geometry("900x800")
