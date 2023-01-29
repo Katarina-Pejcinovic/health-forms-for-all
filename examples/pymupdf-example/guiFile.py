@@ -6,6 +6,7 @@ from tkinter import *
   
 # import filedialog module
 from tkinter import filedialog
+import tkinter.ttk as ttk
 import fitz, os
 
 
@@ -39,39 +40,65 @@ window = Tk()
 window.title('File Explorer')
   
 # Set window size
-window.geometry("500x500")
+window.geometry("700x300")
 
 #Set window background color
-window.config(background = "white")
+window.config()
 
 
-    
-    
-  
+
+Description = ttk.Label(window,
+                            text = "Form This Way is a PDF scanner and annotating tool, designed to help companies and providers patient intake forms' inclusivity",
+                            font=('Helvetica', 12, 'italic'),
+                            background="white",
+                            )
 # Create a File Explorer label
-label_file_explorer = Label(window,
-                            text = "File Explorer using Tkinter",
-                            width = 100, height = 4,
-                            fg = "red")
+label_file_explorer = ttk.Label(window,
+                            text = "Form This Way",
+                            font=('Helvetica', 18, 'bold'),
+                            background="white", justify="center",
+                            )
   
       
-button_explore = Button(window,
+button_explore = ttk.Button(window,
                         text = "Browse Files",
-                        command = browseFiles)
+                        command = browseFiles, style='TButton'
+                        )
   
-button_exit = Button(window,
+button_exit = ttk.Button(window,
                      text = "Exit",
-                     command = exit)
+                     command = exit, )
   
 # Grid method is chosen for placing
 # the widgets at respective positions
 # in a table like structure by
 # specifying rows and columns
-label_file_explorer.grid(column = 1, row = 1)
+
+# create a notebook
+notebook = ttk.Notebook(window)
+notebook.grid(column=0, row=5)
+
+# create frames
+frame1 = ttk.Frame(notebook, width=400, height=280)
+frame2 = ttk.Frame(notebook, width=400, height=280)
+
+frame1.grid(column=1, row=6)
+frame2.grid(column=2, row=6)
+
+# add frames to notebook
+
+notebook.add(frame1, text='General Information')
+notebook.add(frame2, text='Profile')
+
+label_file_explorer.grid(column = 0, row = 0)
+
+Description.grid(column = 0, row = 1)
+
+
   
-button_explore.grid(column = 1, row = 2)
+button_explore.grid(column = 0, row = 4)
   
-button_exit.grid(column = 1,row = 3)
+# button_exit.grid(column = 1,row = 4)
   
 # Let the window wait for any events
 
