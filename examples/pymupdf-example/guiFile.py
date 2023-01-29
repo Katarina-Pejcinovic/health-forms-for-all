@@ -8,14 +8,13 @@ import tkinter as tk
 # import filedialog module
 from tkinter import filedialog
 import tkinter.ttk as ttk
-import fitz, os
+import os
 from script import *
 from pathlib import Path
 from PIL import ImageTk, Image
-from fontTools import ttLib
-import time
+#from fontTools import ttLib
 
-ttfFile = ttLib.TTFont("/Users/imody/Desktop/qwerHacks/health-forms-for-all/examples/pymupdf-example/gagaFont.ttf")
+#ttfFile = ttLib.TTFont("/Users/imody/Desktop/qwerHacks/health-forms-for-all/examples/pymupdf-example/gagaFont.ttf")
 class Checkbar(Frame):
     def __init__(self, parent=None, picks={}, side=LEFT, anchor=W, list_keys=[]):
         Frame.__init__(self, parent)
