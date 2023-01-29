@@ -12,9 +12,10 @@ import fitz, os
 from script import *
 from pathlib import Path
 from PIL import ImageTk, Image
+from fontTools import ttLib
 
 
-
+ttfFile = ttLib.TTFont("/Users/imody/Desktop/qwerHacks/health-forms-for-all/examples/pymupdf-example/gagaFont.ttf")
 class Checkbar(Frame):
     def __init__(self, parent=None, picks={}, side=LEFT, anchor=W, list_keys=[]):
         Frame.__init__(self, parent)
@@ -42,7 +43,7 @@ def browseFiles():
                                                         "*.*")))
       
     # Change label contents
-    fileLabel.configure(text="File Opened: "+filename)
+    fileLabel.configure(text="File successfully scanned! Please check your Downloads Folder")
     # v1 = pdf.ShowPdf()
     # v2 = v1.pdf_view(window, pdf_location = filename)
     if(filename != ""):
@@ -67,7 +68,7 @@ window = Tk()
 window.title('File Explorer')
   
 # Set window size
-window.geometry("900x600")
+window.geometry("900x800")
 
 #Set window background color
 window.config()
@@ -82,10 +83,10 @@ Description = ttk.Label(window,
 # Create a File Explorer label
 label_file_explorer = ttk.Label(window,
                             text = "Form This Way",
-                            font=('Helvetica', 18, 'bold'),
+                            font= ('BORN THIS WAY', 20),
                             background="white", justify="center",
                             )
-fileLabel = ttk.Label(window, text = "",  font=('Helvetica', 12, 'bold'),
+fileLabel = ttk.Label(window, text = "",  font=('Helvetica', 22, 'bold'),
                             background="white", justify="center", )
 fileLabel.grid(column = 0, row = 6)
       
@@ -127,9 +128,9 @@ notebook.add(frame2, text='Issue')
 notebook.add(frame3, text='Additional Steps')
 notebook.add(frame4, text='Resources')
 
-label_file_explorer.grid(column = 0, row = 0)
+# label_file_explorer.grid(column = 1, row = 0)
 
-Description.grid(column = 0, row = 1)
+Description.grid(column = 0, row = 2)
 
 aboutSection = ttk.Label(frame1, 
           text ="About Section \n\nFirst, select the file you would like to scan using the 'Browse File'. \nThe file you have selected will be scanned and annotated by our program. \nThe modified file will be automatically be stored in your Downloads folder.\n").grid(column = 0, 
@@ -151,13 +152,24 @@ resourcesSection = ttk.Label(frame4,
                                row = 0,
                                padx = 5,
                                pady = 5)
-image1 = Image.open(os.getcwd() + "/FormLogo.png")
-img = image1.resize((100,100))
+image1 = Image.open(os.getcwd() + "/logo-dark.png")
+img = image1.resize((178,100))
 test = ImageTk.PhotoImage(img)
 
+image2 = Image.open(os.getcwd() + "/title-bright.png")
+img2_height = 70
+img2 = image2.resize((img2_height*6,img2_height))
+gagaTest = ImageTk.PhotoImage(img2)
+
 resourcesSection = ttk.Label(window, 
-          image=test).grid(column = 1, 
+          image=test).grid(column = 0, 
                                row = 0,
+                               padx = 0,
+                               pady = 5,
+                               columnspan=2)
+gagaImage = ttk.Label(window, 
+          image=gagaTest).grid(column = 0, 
+                               row = 1,
                                padx = 0,
                                pady = 5,
                                columnspan=2)
