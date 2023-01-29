@@ -13,13 +13,15 @@ missing_words = {
     'sexuality': ['sexuality', 'sexual orientation', 'sexual preference'],
     'honorifics': ['Mr.', 'Mrs.', 'Title', 'Position', 'Prefix'],
     'prefname': ['Preferred name', 'Chosen name'],
+    'pronouns': ['Pronouns'],
     #'bogus': ['bogus'],
     #'Hot chocolate': ['Hot chocolate', 'Hot cocoa'],
 }
 missing_comments = {
-    'honorifics': 'Add an honorific bruh',
-    "sexuality": "consider adding a section for patients to add their sexuality if they wish.",
+    'honorifics': 'Consider adding an honorific/title field',
+    "sexuality": "Consider adding a section for patients to add their sexuality if they wish",
     'prefname': 'Consider adding a "chosen name" field',
+    'pronouns': 'Consider adding a pronouns field',
     #'bogus': 'this missing word is bogus.',
     #'Hot chocolate': 'How dare you not have hot chocolate in your form',
 }
