@@ -13,7 +13,7 @@ from script import *
 from pathlib import Path
 from PIL import ImageTk, Image
 from fontTools import ttLib
-
+import time
 
 ttfFile = ttLib.TTFont("/Users/imody/Desktop/qwerHacks/health-forms-for-all/examples/pymupdf-example/gagaFont.ttf")
 class Checkbar(Frame):
@@ -35,15 +35,19 @@ list_keys = ['Healthcare', 'Government', 'Research', 'Marketing']
 # Function for opening the
 # file explorer window
 def browseFiles():
+    fileLabel.grid_remove();
+    
     filename = filedialog.askopenfilename(initialdir = "/",
                                           title = "Select a File",
                                           filetypes = (("PDF files",
                                                         "*.pdf"),
                                                        ("all files",
                                                         "*.*")))
-      
+    print("completed dialog")
     # Change label contents
-    fileLabel.configure(text="File successfully scanned! Please check your Downloads Folder")
+    # fileLabel.configure(text="File successfully scanned! Please check your Downloads Folder")
+    fileLabel.grid(column = 0, row = 6)
+    fileLabel["text"]="file success updated"
     # v1 = pdf.ShowPdf()
     # v2 = v1.pdf_view(window, pdf_location = filename)
     if(filename != ""):
