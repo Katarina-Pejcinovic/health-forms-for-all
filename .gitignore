@@ -1,2 +1,3 @@
-examples/*-example/output.pdf
+**/output.pdf
+**/.DS_Store
 **/__pycache__

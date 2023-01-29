@@ -1,38 +1,42 @@
 import fitz, os, argparse
 
+bad_words = {
+    'Parent': "parent(s)/guardian",
+    'Mother/Father': "parent(s)/Guardian", 
+    ' sex ': "gender assigned at birth",
+    'spouse': 'partner(s)',
+    'son/daughter': 'child', 
+    'marital status': 'relationship status',
+    'Preferred name': 'chosen name', 
+}
+missing_words = {
+    'sexuality': ['sexuality', 'sexual orientation', 'sexual preference'],
+    'honorifics': ['Mr.', 'Mrs.', 'Title', 'Position', 'Prefix'],
+    'prefname': ['Preferred name', 'Chosen name'],
+    #'bogus': ['bogus'],
+    #'Hot chocolate': ['Hot chocolate', 'Hot cocoa'],
+}
+missing_comments = {
+    'honorifics': 'Add an honorific bruh',
+    "sexuality": "consider adding a section for patients to add their sexuality if they wish.",
+    'prefname': 'Consider adding a "chosen name" field',
+    #'bogus': 'this missing word is bogus.',
+    #'Hot chocolate': 'How dare you not have hot chocolate in your form',
+}
+
 def rgb_to_stroke(rgb):
     return tuple([x / 255 for x in rgb])
 
 def lint_pdf(infile: str, outfile: str):
     document = fitz.open(infile)
-    bad_words = {
-        'Parent': "parent(s)/guardian",
-        'Mother/Father': "parent(s)/Guardian", 
-        ' sex ': "gender assigned at birth",
-        'spouse': 'partner(s)',
-        'son/daughter': 'child', 
-        'name': 'legal name and chosen name',
-        'marital status': 'relationship status',
-    }
-    missing_words = {
-        "sexuality": ["sexuality", 'sexual orientation', 'sexual preference'],
-        'honorifics': ['Mr.', 'Mrs.', 'Title', 'Position', 'Prefix'],
-        #'bogus': ['bogus'],
-        #'Hot chocolate': ['Hot chocolate', 'Hot cocoa'],
-    }
-    missing_comments = {
-        'honorifics': 'Add an honorific bruh',
-        "sexuality": "consider adding a section for patients to add their sexuality if they wish.",
-        #'bogus': 'this missing word is bogus.',
-        #'Hot chocolate': 'How dare you not have hot chocolate in your form',
-    }
     missing_words_count = { k: 0 for k in missing_words.keys() }
 
     for page in document:
-        for key in bad_words.keys():
-            instances = page.search_for(key)
+        for word, better_word in bad_words.items():
+            instances = page.search_for(word)
             for inst in instances:
-                page.add_text_annot(inst.top_right, bad_words[key])
+                comment = 'Consider changing {0} to {1}.'.format(word, better_word)
+                page.add_text_annot(inst.top_right, comment)
                 highlight = page.add_highlight_annot(inst)
                 highlight.set_colors({'stroke': rgb_to_stroke((255, 108, 79)), 'fill': None})
                 highlight.update()
